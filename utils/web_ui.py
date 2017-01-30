@@ -15,10 +15,16 @@ class WebElement(object):
     def find(self):
         if self.locator_type == "xpath":
             return WebDriverWait(self.driver, self.timeout).\
-                until(EC.presence_of_all_elements_located((By.XPATH, self.locator)))
+                until(EC.element_to_be_clickable((By.XPATH, self.locator)))
         else:
             return WebDriverWait(self.driver, self.timeout).\
-                until(EC.presence_of_all_elements_located((By.ID, self.locator)))
+                until(EC.element_to_be_clickable((By.ID, self.locator)))
 
     def click(self):
         self.find().click()
+
+    def send_keys(self, keys):
+        self.find().send_keys(keys)
+
+    def get_text(self):
+        return self.find().text

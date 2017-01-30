@@ -7,11 +7,22 @@ class User(object):
         self.user_name = user_name
         self.user_email = user_email
         self.user_password = user_password
-        self.random_sufix = ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(7))
 
-    def generate_random_user(self):
-        self.user_name = "testUserName-{}".format(self.random_sufix)
-        self.user_email = "testUserEmail-{}@test.com".format(self.random_sufix)
-        self.user_password = "Pass{}".format(self.random_sufix)
+    @staticmethod
+    def _create_data():
+        random_sufix = ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(7))
+        data = {
+            "user_name": "testUserName-{}".format(random_sufix),
+            "user_email": "testUserEmail-{}@test.com".format(random_sufix),
+            "user_password": "Pass{}".format(random_sufix)
+        }
+        return data
+
+    @classmethod
+    def generate_random_user(cls):
+        gen_data = cls._create_data()
+        return cls(**gen_data)
+
+
 
  #   def generate_user_with_empty_name(self):
