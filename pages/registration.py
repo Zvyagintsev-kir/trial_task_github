@@ -26,6 +26,10 @@ class RegistrationStepOnePage(BasePage):
     def sign_button(self):
         return WebElement(self.driver, locator_type="id", locator="signup_button")
 
+    @property
+    def validation_error(self):
+        return WebElement(self.driver, locator_type="xpath", locator="//dd[@class='error']")
+
 
 class RegistrationStepTwoPage(BasePage):
 

@@ -30,3 +30,9 @@ class RegistrationSteps(object):
             return True
         else:
             return False
+
+    def check_validation_error(self, error):
+        if self.registration_page_step_one.validation_error.get_text() == error:
+            return True
+        else:
+            return False
