@@ -16,11 +16,14 @@ validation_test_id = [
 ]
 
 
-def test_github_registration_successes():
-    driver = webdriver.Firefox()
-    driver.maximize_window()
-    driver.get("http://www.github.com/join")
-    reg_steps = RegistrationSteps(driver)
+@pytest.fixture(scope="function")
+def test_driver(request, selenium_driver):
+    yield selenium_driver
+    selenium_driver.get("http://www.github.com/join")
+
+
+def test_github_registration_successes(test_driver):
+    reg_steps = RegistrationSteps(test_driver)
     user = User.generate_random_user()
     reg_steps.fill_user_information_on_first_step(user)
     reg_steps.choose_account_type_on_second_step()
@@ -29,11 +32,8 @@ def test_github_registration_successes():
 
 
 @pytest.mark.parametrize("gen_user", user_data, ids=validation_test_id)
-def test_github_validation_error(gen_user):
-    driver = webdriver.Firefox()
-    driver.maximize_window()
-    driver.get("http://www.github.com/join")
-    reg_steps = RegistrationSteps(driver)
+def test_github_validation_error(gen_user, test_driver):
+    reg_steps = RegistrationSteps(test_driver)
     reg_steps.fill_user_information_on_first_step(gen_user)
     assert reg_steps.check_validation_error(gen_user.validation_error)
 
