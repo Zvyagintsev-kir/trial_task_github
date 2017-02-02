@@ -1,3 +1,4 @@
+
 from pages.registration import RegistrationStepOnePage
 from pages.registration import RegistrationStepTwoPage
 from pages.registration import RegistrationStepThreePage
@@ -5,6 +6,7 @@ from pages.registration import RegistrationConfirmPage
 
 
 class RegistrationSteps(object):
+    """This object encapsulate pages interaction logic"""
     def __init__(self, driver):
         self.registration_page_step_one = RegistrationStepOnePage(driver)
         self.registration_page_step_two = RegistrationStepTwoPage(driver)

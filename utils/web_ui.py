@@ -1,11 +1,11 @@
-from selenium import webdriver
-from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+import time
 
 
 class WebElement(object):
+    """Small wrapper for selenium lib. It provides basic wait mechanism"""
     def __init__(self, driver, locator_type, locator, timeout=10):
         self.driver = driver
         self.locator_type = locator_type
@@ -25,6 +25,7 @@ class WebElement(object):
 
     def send_keys(self, keys):
         self.find().send_keys(keys)
+        time.sleep(1)
 
     def get_text(self):
         return self.find().text

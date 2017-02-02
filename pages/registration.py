@@ -8,7 +8,19 @@ class BasePage(object):
         self.driver = driver
 
 
+class InternalPage(BasePage):
+    @property
+    def drop_down_menu(self):
+        return WebElement(self.driver, locator_type="xpath",
+                          locator="//a[@class='header-nav-link name tooltipped tooltipped-sw js-menu-target']")
+
+    @property
+    def sign_out_button(self):
+        return WebElement(self.driver, locator_type="xpath", locator="//button[@class='dropdown-item dropdown-signout']")
+
+
 class RegistrationStepOnePage(BasePage):
+    """RegistrationStepOne page describe ui locators for this page"""
 
     @property
     def name_field(self):
@@ -32,7 +44,7 @@ class RegistrationStepOnePage(BasePage):
 
 
 class RegistrationStepTwoPage(BasePage):
-
+    """RegistrationStepTwoPage class describe ui locators for this page"""
     @property
     def public_repository_radio_button(self):
         return WebElement(self.driver, locator_type="xpath",
@@ -45,7 +57,7 @@ class RegistrationStepTwoPage(BasePage):
 
 
 class RegistrationStepThreePage(BasePage):
-
+    """RegistrationStepThreePage class describe ui locators for this page"""
     @property
     def research_checkbox(self):
         return WebElement(self.driver, locator_type="id", locator="answers_99_choice_467")
@@ -60,6 +72,7 @@ class RegistrationStepThreePage(BasePage):
 
 
 class RegistrationConfirmPage(BasePage):
+    """RegistrationConfirmPage class describe ui locators for this page"""
     @property
     def confirmation_message(self):
         return WebElement(self.driver, locator_type='xpath', locator="//h2[@class='shelf-title']")
