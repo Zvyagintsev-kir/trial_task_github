@@ -1,0 +1,11 @@
+version: '2'
+services:
+  github_tests:
+    build: .
+    volumes:
+      - ./models:/trial_task_github
+
+  selenium:
+    image: zvyagintsevkr/selenium:v0.1
+    ports:
+      - "4444:4444"

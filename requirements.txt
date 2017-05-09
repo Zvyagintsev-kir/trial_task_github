@@ -1,4 +1,4 @@
-appdirs==1.4.0
+appdirs
 backports.shutil-get-terminal-size==1.0.0
 decorator==4.0.11
 enum34==1.1.6
@@ -18,7 +18,7 @@ pyparsing==2.1.10
 pytest==3.0.6
 pytest-html==1.13.0
 scandir==1.4
-selenium==3.0.2
+selenium
 simplegeneric==0.8.1
 six==1.10.0
 traitlets==4.3.1
